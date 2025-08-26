@@ -1,4 +1,6 @@
+
 import type {NextConfig} from 'next';
+require('dotenv').config({ path: './.env' });
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -12,11 +14,21 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'placehold.co',
-        port: '',
+        hostname: 'source.unsplash.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
         pathname: '/**',
       },
     ],
+    unoptimized: true, 
   },
 };
 
