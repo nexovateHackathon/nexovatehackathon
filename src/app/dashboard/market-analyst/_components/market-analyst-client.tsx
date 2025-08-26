@@ -52,6 +52,7 @@ export function MarketAnalystClient() {
     const recognition = new SpeechRecognition();
     recognition.continuous = false;
     recognition.interimResults = false;
+    console.log("Selected language for recognition:", language);
     
     // Set language for speech recognition
     const langMap = { en: 'en-IN', hi: 'hi-IN', kn: 'kn-IN' };
