@@ -36,6 +36,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/hooks/use-auth";
 import { useTranslation } from "@/contexts/language-context";
 import Image from "next/image";
+import { CropImage } from "@/components/crop-image";
+import { getCropImage } from "@/constants/cropImageMap";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 
@@ -241,10 +243,22 @@ export default function DashboardPage() {
                                 </Card>
                              ))
                         ) : recommendations && recommendations.recommendations.length > 0 ? (
-                           recommendations.recommendations.slice(0,2).map(rec => (
+                           recommendations.recommendations.slice(0,2).map((rec, index) => (
                             <Card key={rec.cropName} className="overflow-hidden">
                                 <div className="flex items-start gap-4 p-4">
-                                    <Image src={`https://placehold.co/100x100.png`} alt={rec.cropName} width={80} height={80} className="rounded-lg object-cover" data-ai-hint={rec.imageHint}/>
+                                    {(() => {
+                                      const local = getCropImage(rec.cropName);
+                                      if (local) {
+                                        return (
+                                          <Image src={local} alt={rec.cropName} width={80} height={80} className="rounded-lg object-cover" unoptimized />
+                                        );
+                                      }
+                                      const raw = (rec.imageHint || rec.cropName || '').replace(/\([^)]*\)/g, '').trim();
+                                      const query = `${raw} crop field agriculture India`;
+                                      return (
+                                        <CropImage query={query} alt={rec.cropName} width={80} height={80} className="rounded-lg object-cover" />
+                                      );
+                                    })()}
                                     <div className="flex-1">
                                         <h4 className="font-semibold text-base">{rec.cropName}</h4>
                                         <p className="text-xs text-muted-foreground mt-1 mb-2 line-clamp-2">{rec.reasoning}</p>

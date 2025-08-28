@@ -3,6 +3,8 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { CropImage } from '@/components/crop-image';
+import { getCropImage } from '@/constants/cropImageMap';
 import Link from 'next/link';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -269,7 +271,19 @@ export function CropRecommenderClient() {
                 {result.recommendations.map((rec, index) => (
                 <Card key={index} className="overflow-hidden flex flex-col">
                     <div className="relative w-full h-40">
-                        <Image src={`https://placehold.co/400x300.png`} alt={rec.cropName} layout="fill" objectFit="cover" data-ai-hint={rec.imageHint} />
+                        {(() => {
+                          const local = getCropImage(rec.cropName);
+                          if (local) {
+                            return (
+                              <Image src={local} alt={rec.cropName} fill className="object-cover" unoptimized />
+                            );
+                          }
+                          const raw = (rec.imageHint || rec.cropName || '').replace(/\([^)]*\)/g, '').trim();
+                          const query = `${raw} crop field agriculture India`;
+                          return (
+                            <CropImage query={query} alt={rec.cropName} fill className="object-cover" />
+                          );
+                        })()}
                     </div>
                     <CardHeader className="flex flex-row items-start gap-4">
                         {iconMap[rec.icon as CropIcon] || iconMap.Leaf}
