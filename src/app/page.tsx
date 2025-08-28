@@ -84,7 +84,7 @@ export default function LoginPage() {
     <div className="w-full h-screen lg:grid lg:grid-cols-2">
        <div className="hidden bg-muted lg:block relative">
         <Image
-          src="https://placehold.co/1200x900.png"
+          src="/images/indianfarm.jpg"
           alt={t('login.imageAlt')}
           data-ai-hint="lush indian farm sunset"
           width="1200"
