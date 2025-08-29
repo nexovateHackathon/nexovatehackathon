@@ -95,6 +95,12 @@ export default function DashboardPage() {
       href: "/dashboard/learn",
       icon: BookOpen,
     },
+    {
+      title: "3D Crop Plot",
+      description: "Visualize your field layout in 3D",
+      href: "/dashboard/crop-plot",
+      icon: Leaf,
+    },
   ];
 
   useEffect(() => {
