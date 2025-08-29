@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -25,7 +24,6 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { cn } from '@/lib/utils';
 import { Icons } from '@/components/icons';
 
-
 const iconMap = {
   Leaf: <Leaf className="h-8 w-8 text-primary" />,
   Sprout: <Icons.sprout className="h-8 w-8 text-primary" />,
@@ -35,8 +33,7 @@ const iconMap = {
 };
 type CropIcon = keyof typeof iconMap;
 
-
-// Cannot be imported from a 'use server' file.
+// Add growingSpaceType to schema
 const RecommendCropsInputClientSchema = z.object({
   location: z.string().min(1, "Location is required."),
   farmType: z.enum(['irrigated', 'rainfed']),
@@ -48,6 +45,7 @@ const RecommendCropsInputClientSchema = z.object({
   budget: z.string().optional(),
   cropPreference: z.string().optional(),
   language: z.string(),
+  growingSpaceType: z.string().optional(), // <-- Added field
 });
 
 const SpeechRecognition =
@@ -58,7 +56,7 @@ type RecommendationFormValues = z.infer<typeof RecommendCropsInputClientSchema>;
 export function CropRecommenderClient() {
   const { t, language } = useTranslation();
   const { userProfile } = useAuth();
-  
+
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<RecommendCropsOutput | null>(null);
   const [recordingField, setRecordingField] = useState<keyof RecommendationFormValues | null>(null);
@@ -76,6 +74,7 @@ export function CropRecommenderClient() {
       budget: '',
       cropPreference: '',
       language: language,
+      growingSpaceType: '', // <-- Added default
     }
   });
 
@@ -133,6 +132,14 @@ export function CropRecommenderClient() {
   const soilTypes = ["black", "red", "loamy", "sandy", "clay"];
   const waterSources = ["borewell", "canal", "rain-only", "tank", "river"];
   const seasons = ["kharif", "rabi", "zaid"];
+  const growingSpaceTypes = [
+    { value: "rooftop", label: "Rooftop/Terrace Garden" },
+    { value: "balcony", label: "Balcony Garden" },
+    { value: "backyard", label: "Backyard Plot" },
+    { value: "community", label: "Community Garden Plot" },
+    { value: "vertical", label: "Vertical/Indoor Farm" },
+    { value: "hydroponic", label: "Hydroponic/Aquaponic System" },
+  ];
 
   return (
     <div className="grid gap-8 lg:grid-cols-12">
@@ -216,6 +223,27 @@ export function CropRecommenderClient() {
                         </SelectContent>
                     </Select>
                 )} />
+            </div>
+
+            {/* New Growing Space Type field */}
+            <div>
+              <Label htmlFor="growingSpaceType">Growing Space Type</Label>
+              <Controller
+                name="growingSpaceType"
+                control={control}
+                render={({ field }) => (
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select growing space type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {growingSpaceTypes.map(option => (
+                        <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+              />
             </div>
 
             <div>

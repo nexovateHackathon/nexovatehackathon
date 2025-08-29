@@ -15,7 +15,7 @@ import { useTranslation } from '@/contexts/language-context';
 
 // Check for SpeechRecognition API
 const SpeechRecognition =
-  (typeof window !== 'undefined' && (window.SpeechRecognition || window.webkitSpeechRecognition));
+  (typeof window !== 'undefined' && (window.SpeechRecognigition || window.webkitSpeechRecognition));
 
 export function MarketAnalystClient() {
   const { t, language } = useTranslation();
