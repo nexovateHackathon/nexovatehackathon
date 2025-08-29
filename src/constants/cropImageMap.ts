@@ -3,6 +3,10 @@
 
 const map: Record<string, string> = {
   'Groundnut': '/crops/groundnut.jpg',
+  'Paddy Rice': '/crops/paddy-rice.jpg',
+  'Wheat': '/crops/wheat.jpg',
+  'Maize': '/crops/maize.jpg',
+  'Soybean': '/crops/soybean.jpg',
   'Sugarcane': '/crops/sugarcane.jpg',
   'Red Gram (Tur)': '/crops/red-gram.jpg',
   'Pearl Millet (Bajra)': '/crops/pearl-millet.jpg',
