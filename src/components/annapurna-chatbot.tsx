@@ -32,8 +32,23 @@ interface ActionableMessage extends BaseMessage {
 
 type Message = BaseMessage | ActionableMessage;
 
-const SpeechRecognition =
-  (typeof window !== 'undefined' && (window.SpeechRecognition || window.webkitSpeechRecognition));
+let SpeechRecognition;
+
+if (typeof window !== "undefined") {
+  SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+}
+
+if (SpeechRecognition) {
+  const recognition = new SpeechRecognition();
+  recognition.lang = "en-US";
+  recognition.start();
+
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    // do something with transcript (no console logs if you don’t want)
+  };
+}
 
 const intentToRouteMap: Record<string, string> = {
     navigate_dashboard: '/dashboard',

@@ -45,7 +45,7 @@ export function UserNav() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-9 w-9">
-            <AvatarImage src={user.photoURL || `https://placehold.co/40x40.png`} alt={user.displayName || "User"} data-ai-hint="indian farmer smiling" />
+            <AvatarImage src={user.photoURL || `https://www.flaticon.com/free-icon/profile_3135715`} alt={user.displayName || "User"} data-ai-hint="indian farmer smiling" />
             <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>
           </Avatar>
         </Button>
