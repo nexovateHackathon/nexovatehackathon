@@ -598,7 +598,7 @@
             "farmType": "Farm Type",
             "irrigated": "Irrigated",
             "rainfed": "Rainfed / Dry",
-            "landSize": "Land Size (e.g., 2 acres)",
+            "landSize": "Land Size (e.g., 2 sq ft)",
             "cropPreference": "Crop Preference (Optional)",
             "cropPreferencePlaceholder": "e.g., Vegetables, Millets",
             "getRecommendations": "Get Recommendations",

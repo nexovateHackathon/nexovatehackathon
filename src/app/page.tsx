@@ -84,7 +84,7 @@ export default function LoginPage() {
     <div className="w-full h-screen lg:grid lg:grid-cols-2">
        <div className="hidden bg-muted lg:block relative">
         <Image
-          src="/images/indianfarm.jpg"
+          src="/images/indianfarm.jpeg"
           alt={t('login.imageAlt')}
           data-ai-hint="lush indian farm sunset"
           width="1200"

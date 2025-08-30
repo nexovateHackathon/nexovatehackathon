@@ -96,7 +96,7 @@ export default function SchemeNavigatorPage() {
                 {keySchemes.map(scheme => (
                     <Card key={scheme.title}>
                         <CardHeader className="flex flex-row items-start gap-4">
-                            <Image src={`https://placehold.co/80x80.png`} width={50} height={50} alt={scheme.title} className="rounded-lg" data-ai-hint={scheme.hint}/>
+                            <Image src={`/images/schemes.png`} width={50} height={50} alt={scheme.title} className="rounded-lg" data-ai-hint={scheme.hint}/>
                             <div>
                                <CardTitle className="text-lg">{scheme.title}</CardTitle>
                                <CardDescription className="text-xs">{scheme.description}</CardDescription>

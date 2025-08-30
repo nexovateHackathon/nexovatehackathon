@@ -40,6 +40,7 @@ import { CropImage } from "@/components/crop-image";
 import { getCropImage } from "@/constants/cropImageMap";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
+import { d } from "@genkit-ai/googleai";
 
 const iconMap = {
   Cloud,
@@ -101,6 +102,25 @@ export default function DashboardPage() {
       href: "/dashboard/crop-plot",
       icon: Leaf,
     },
+    {
+      title: "Community",
+      description: "Connect with fellow farmers",
+      href: "/dashboard/community",
+      icon: Leaf,
+    },
+    {
+      title: "Shop",
+      description: "Buy farming supplies and equipment",
+      href: "/dashboard/shop",
+      icon: ShoppingCart,
+    },
+    {
+      title: "Weather",
+      description: "Get the latest weather updates",
+      href: "/dashboard/weather",
+      icon: Sun,
+    },
+    
   ];
 
   useEffect(() => {

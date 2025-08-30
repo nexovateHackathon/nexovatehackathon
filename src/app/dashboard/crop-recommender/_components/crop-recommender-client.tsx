@@ -156,7 +156,7 @@ export function CropRecommenderClient() {
               {errors.location && <p className="text-xs text-destructive">{errors.location.message}</p>}
             </div>
 
-            <div>
+            {/* <div>
                 <Label>{t('cropRecommender.client.farmType')}</Label>
                 <Controller
                     name="farmType"
@@ -176,11 +176,11 @@ export function CropRecommenderClient() {
                         </RadioGroup>
                     )}
                 />
-            </div>
+            </div> */}
              <div>
               <Label htmlFor="landSize">{t('cropRecommender.client.landSize')}</Label>
               <div className="flex items-center gap-2">
-                <Input id="landSize" {...register('landSize')} placeholder="e.g., 2 acres"/>
+                <Input id="landSize" {...register('landSize')} placeholder="e.g 2 sq.ft"/>
                  <Button type="button" variant={recordingField === 'landSize' ? "destructive" : "outline"} size="icon" onClick={() => handleMicClick('landSize')} disabled={!!recordingField}>
                     {recordingField === 'landSize' ? <Square className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
                 </Button>
